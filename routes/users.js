@@ -8,14 +8,12 @@ const router = express.Router();
 /* GET users listing. */
 router.get('/', authenticate.verifyUser, authenticate.verifyAdmin, function(req, res, next) {
     User.find()
-    .then((users) => {
+    .then(users => {
         res.statusCode = 200;
         res.setHeader('Content-type', 'application/json');
         res.json(users);
     })
-    .catch((err) => {
-        return next(err);
-    })
+    .catch(err => next(err));
 });
 
 router.post('/signup', (req, res) => {

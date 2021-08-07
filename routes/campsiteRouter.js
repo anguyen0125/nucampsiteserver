@@ -184,7 +184,8 @@ campsiteRouter.route('/:campsiteId/comments/:commentId')
                 })
                 .catch(err => next(err));
             } else {
-                res.statusCode = 403;
+                err = new Error('You cannot edit this comment.')
+                err.status = 403;
                 return next(err);
             }
         } else if (!campsite) {
